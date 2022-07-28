@@ -1,0 +1,21 @@
+{
+    "name": "kentreez/easy-file-reader",
+    "description": "Simple way for reading .txt, .msv, .xls, .xlsx",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kentreez\\EasyFileReader\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kasidiss Jumrus",
+            "email": "kentreez@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.24"
+    }
+}
