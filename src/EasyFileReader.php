@@ -2,6 +2,7 @@
 
 namespace Kentreez\EasyFileReader;
 
+use Kentreez\EasyFileReader\Exceptions\UnhandledFileExtensionException;
 use Kentreez\EasyFileReader\Reader\AbstractReader;
 use Kentreez\EasyFileReader\Reader\CsvReader;
 use Kentreez\EasyFileReader\Reader\TxtReader;
@@ -10,9 +11,12 @@ use Kentreez\EasyFileReader\Reader\XlsxReader;
 
 class EasyFileReader
 {
-    public static function Read (string $filepath): AbstractReader
+    /**
+     * @throws UnhandledFileExtensionException
+     */
+    public static function Read (string $filepath, ?string $originalName = null): AbstractReader
     {
-        $extension = strtolower(pathinfo($filepath, PATHINFO_EXTENSION));
+        $extension = strtolower(pathinfo($originalName ?: $filepath, PATHINFO_EXTENSION));
 
         switch ($extension) {
             case 'txt':
@@ -23,6 +27,8 @@ class EasyFileReader
                 return new XlsReader($filepath);
             case 'xlsx':
                 return new XlsxReader($filepath);
+            default:
+                throw new UnhandledFileExtensionException();
         }
     }
 }
