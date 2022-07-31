@@ -32,4 +32,14 @@ abstract class AbstractReader
 
         return $this->count_rows;
     }
+
+    /**
+     * @throws ReaderException
+     */
+    public function firstColumns (): Generator
+    {
+        foreach ($this->rows() as $row) {
+            yield $row[0];
+        }
+    }
 }

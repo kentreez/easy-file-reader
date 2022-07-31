@@ -21,4 +21,8 @@ Because of using Generator for iterate over input file's rows. **DO NOT BREAK** 
             print_r($rows);
         }
 
+        // if we interest only first column of each row then
+        foreach ($easy->firstColumns() as $str) {
+            echo $str . PHP_EOL;
+        }
     ?>
